@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>LED ON/OFF</h1>
+		<button onclick="led_op()">LED1</button>
+		<button onclick="led_op2()">LED2</button>
+		<div id="result"></div>
+		<div id="result2"></div>
+		<script>
+			const result = document.querySelector("#result");
+			const result2 = document.querySelector("#result2");
+			let led1 = false;
+			let led2 = false;
+
+			function led_op() {
+				led1 = !led1;
+				let url = led1 == true ? "/led/on" : "/led/off";
+				fetch(url)
+					.then((response) => response.text())
+					.then((data) => {
+						result.innerHTML = "<h2>" + data + "</h2>";
+					});
+			}
+			function led_op2() {
+				led2 = !led2;
+				let url = led2 == true ? "/led/on2" : "/led/off2";
+				fetch(url)
+					.then((response) => response.text())
+					.then((data) => {
+						result2.innerHTML = "<h2>" + data + "</h2>";
+					});
+			}
+		</script>
+	</body>
+</html>
